@@ -1,0 +1,49 @@
+# Publication style for SuperMatics papers (Computer Modern, vector PDF)
+font.family: serif
+font.serif: cmr10, Computer Modern Roman, DejaVu Serif
+mathtext.fontset: cm
+axes.formatter.use_mathtext: True
+axes.unicode_minus: False
+font.size: 9
+axes.labelsize: 9
+axes.titlesize: 9
+legend.fontsize: 8
+xtick.labelsize: 8
+ytick.labelsize: 8
+
+figure.figsize: 3.4, 2.4
+figure.dpi: 150
+savefig.dpi: 600
+savefig.format: pdf
+savefig.bbox: tight
+savefig.pad_inches: 0.02
+pdf.fonttype: 42
+ps.fonttype: 42
+
+axes.linewidth: 0.6
+axes.grid: False
+axes.spines.top: True
+axes.spines.right: True
+# Okabe-Ito colour-blind-safe cycle with matching linestyles
+axes.prop_cycle: cycler('color', ['0072B2', 'D55E00', '009E73', 'CC79A7', 'E69F00', '56B4E9', '000000']) + cycler('linestyle', ['-', '--', '-.', ':', '-', '--', '-.'])
+
+lines.linewidth: 1.1
+lines.markersize: 3.5
+lines.markeredgewidth: 0.6
+
+xtick.direction: in
+ytick.direction: in
+xtick.top: True
+ytick.right: True
+xtick.major.size: 3
+ytick.major.size: 3
+xtick.minor.size: 1.6
+ytick.minor.size: 1.6
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+xtick.minor.visible: True
+ytick.minor.visible: True
+
+legend.frameon: False
+legend.handlelength: 1.8
+legend.borderaxespad: 0.3

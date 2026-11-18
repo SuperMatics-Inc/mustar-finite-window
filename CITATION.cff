@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software supplement, cite its actual deposited release version and the accompanying manuscript."
+title: "Supplement to Linear versus global stability in a Coulomb-penalized Matsubara spin chain"
+authors:
+  - family-names: Rens
+    given-names: Davis
+    affiliation: SuperMatics Inc.
+    orcid: https://orcid.org/0000-0001-5839-5197
+version: 1.0.0
+license: Apache-2.0
+url: "https://github.com/SuperMatics-Inc/mustar-finite-window"
+doi: "10.5281/zenodo.24326113"
+abstract: "Software supplement for SuperMatics-Inc/mustar-finite-window: exact spin-stability identities, interval certificates and selective Lean proofs."
+preferred-citation:
+  type: report
+  title: "Linear versus global stability in a Coulomb-penalized Matsubara spin chain"
+  authors:
+    - family-names: Rens
+      given-names: Davis
+      affiliation: SuperMatics Inc.
+      orcid: https://orcid.org/0000-0001-5839-5197
+  year: 2026
+  doi: "10.5281/zenodo.24326111"
+  institution:
+    name: SuperMatics Inc.
+  number: SM-TR-2026-03
