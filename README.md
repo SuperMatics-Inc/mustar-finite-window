@@ -57,3 +57,7 @@ With elan installed, inside `lean/` use `lake exe cache get`, then `lake build M
 This software tree contains no manuscript sources or manuscript PDF. The accompanying paper is SuperMatics Technical Report **SM-TR-2026-03**, [10.5281/zenodo.24326111](https://doi.org/10.5281/zenodo.24326111). `figures/` contains the generated summary map and its style. Authored code, Lean sources, inputs, certificates, figures and documentation are licensed under Apache-2.0; dependencies retain their own licenses. Cite this software supplement as [10.5281/zenodo.24326113](https://doi.org/10.5281/zenodo.24326113), using `CITATION.cff`.
 
 The companion bounds paper is [arXiv:2611.20496](https://arxiv.org/abs/2611.20496), with supplement [10.5281/zenodo.24270482](https://doi.org/10.5281/zenodo.24270482). The merged companion, *Global uniqueness of the superconducting state in multiband and anisotropic Eliashberg models without Coulomb repulsion*, is a Zenodo preprint, [10.5281/zenodo.24326099](https://doi.org/10.5281/zenodo.24326099). The hidden-convexity companion is submitted and is not on arXiv.
+
+## AI use
+
+AI agents generated proofs, certificates, code, Lean sources and manuscript drafts and edits under the author's direction and review. No LLM is an author.
