@@ -1,11 +1,11 @@
-"""CERTIFIED (Arb ball arithmetic) l2-discontinuous unrestricted-spin boundary.
-Fixed-index, both-index Coulomb XY-penalized spin functional; not a physical free-energy claim.
+"""Use Arb bounds to prove a discontinuity in the l2 norm for the unrestricted spin model.
+The Coulomb XY term uses a fixed window on both indices.
 Einstein Omega=1, lam=8, Nc=5 (j=-5..4), u=20 (unphysical). Exit 0 only if all steps hold:
  (1) E_{T1}(S) < 0 at T1 = 1/40 for the explicit finitely supported configuration in cx_config.json
      (direct full-chain sum, exterior frozen normal; independent of the identities).
- (2) 2Q_u(T) >= 1/2 on l^2(N_0) for EVERY T in [T1, T2], T2 = 4/13 (t = 1/T in [13/4, 40] covered by
+ (2) 2Q_u(T) >= 1/2 on l^2(N_0) for every T in [T1, T2], T2 = 4/13 (t = 1/T in [13/4, 40] covered by
      intervals; arbcert.Qu_bound is valid for all t in each interval).
- (3) G(T) > 0 and 2Q_u(T) > 0 on l^2(N_0) for EVERY T >= T2 (t in [0, 13/4] covered), so Theorem C applies:
+ (3) G(T) > 0 and 2Q_u(T) > 0 on l^2(N_0) for every T >= T2 (t in [0, 13/4] covered), so Theorem C applies:
      the normal state is the unique global minimiser for all T >= T2.
 Also prints Lambda_inf <= S(1) at T1 and the separation radius delta0 = min(sqrt 2, sqrt(kappa'/(2 Lambda_inf)))."""
 import json, sys, time
@@ -77,5 +77,5 @@ if __name__ == "__main__":
     out["ok"] = ok
     out["seconds"] = time.time() - t0
     json.dump(out, open("certify_cx.json", "w"), indent=1)
-    print("ALL CERTIFIED" if ok else "NOT CERTIFIED", " %.1fs" % (time.time() - t0))
+    print("Discontinuity certified" if ok else "Discontinuity not certified", " %.1fs" % (time.time() - t0))
     sys.exit(0 if ok else 1)

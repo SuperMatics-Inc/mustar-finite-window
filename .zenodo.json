@@ -7,7 +7,7 @@
       "orcid": "0000-0001-5839-5197"
     }
   ],
-  "description": "Software supplement for SuperMatics-Inc/mustar-finite-window. Exact spin-stability identities, twenty fixed-index and sixteen fixed-frequency sufficient cells, an unrestricted flipped-spin counterexample and selective Lean proofs. No physical first-order superconducting transition is claimed. README.md states the hypotheses, trust bases and formalization limits. Manuscript sources and PDFs are excluded.",
+  "description": "Software for the finite-window Matsubara spin chain. It contains exact spin-stability identities and interval certificates for twenty sufficient fixed-index cells and sixteen sufficient fixed-frequency cells. The certificates include a counterexample with longitudinally reversed spins in the unrestricted model. It concerns the spin model rather than a physical first-order superconducting transition. The README explains which arguments are checked in Lean. The accompanying report is distributed separately, and its text and PDF are not included.",
   "upload_type": "software",
   "license": "Apache-2.0",
   "version": "1.0.0",

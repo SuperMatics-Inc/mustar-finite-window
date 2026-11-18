@@ -1,9 +1,9 @@
-"""CERTIFIED (Arb): Theorem C / Corollary D thresholds for a FIXED-FREQUENCY Coulomb cutoff omega_c.
+"""Use Arb to check the conditions of Theorem C and Corollary D for a fixed frequency cutoff omega_c.
 
 Model: window N_c(T) = #{n >= 0 : (2n+1) pi T < omega_c}  (frequencies in units of the Einstein
 frequency Omega = 1).  At every fixed T the model is the fixed-index model with N_c = N_c(T), so the
 two-form Theorem C holds verbatim at that T.  Corollary D needs only: for (lam, omega_c, u1) an explicit
-T_b > T_G and finite vector v with 2Q_{u1}(v; N_c(T_b)) < 0 at T_b, and G >= 0 (Arb cover) for ALL
+T_b > T_G and finite vector v with 2Q_{u1}(v; N_c(T_b)) < 0 at T_b, and G >= 0 (Arb cover) for all
 T >= T_b.  Then, for every 0 <= u <= u1:  T_tr(u) = T_lin(u) >= T_b > T_G  and the normal state is the
 unique global minimiser in A_Z for every T > T_lin(u).  (T_lin is the sup over T, with the window
 N_c(T) piecewise constant; no continuity in T of the form is used because T_b itself is a negative
@@ -105,5 +105,5 @@ if __name__ == "__main__":
     res["seconds"] = time.time() - t0
     json.dump(res, open("certify_fixed_omega.json", "w"), indent=1)
     allok = all(c is not None and c["ok"] for k, v in res.items() if k != "seconds" for c in v["cells"].values())
-    print("ALL CERTIFIED" if allok else "SOME CELLS MISSING")
+    print("All cells certified" if allok else "Some cells could not be certified")
     sys.exit(0 if allok else 1)

@@ -1,11 +1,8 @@
-"""Independent re-implementation of the certificate primitives.
+"""Check the certificate bounds with a separate interval implementation.
 
-Toolchain: mpmath (interval arithmetic `mpmath.iv` and multiprecision `mp`) + numpy/LAPACK.
-It deliberately shares NO code with arbcert.py / fc.py / gapmap.py / certify_*.py (those use python-flint/Arb).
-
-What is rigorous here and what is not (labels used in README.md):
-  * `qu_point`            : exact 2Q_u(v) of a floating-point vector by `mpmath.iv` interval arithmetic
-                            (rigorous; the vector may come from anywhere).
+This code uses mpmath and NumPy/LAPACK, without importing the Arb scripts.
+  * `qu_point` encloses 2Q_u(v) in `mpmath.iv`, treating the input floating-point
+    vector as exact.
   * `qu_lb` / `g_lb`      : interval kernel bounds with outward binary64 conversion.
                             LAPACK only proposes a shift and Cholesky factor. A residual
                             row bound, including gamma_n dot-product rounding bounds,
@@ -78,13 +75,13 @@ def theta_tail(C, d):
 
 
 def lam_min_lb(lo, hi):
-    """Residual verification, not a trusted LAPACK eigenvalue.
+    """Bound the least eigenvalue by verifying a residual from LAPACK.
 
     For a computed F and shift c, B-cI = FF^T + R. Bound ||R|| by
     max row sum. gamma_{n+8} bounds dot-product and residual rounding;
     an additional 128*n*eps entrywise allowance covers the preceding
     binary64 matrix assembly and tail-penalty arithmetic. IEEE binary64
-    round-to-nearest with no overflow is part of the trust base.
+    rounding is to nearest and no operation overflows.
     """
     n = lo.shape[0]
     mid = 0.5 * (lo + hi)
@@ -225,7 +222,7 @@ def qu_point(lam, Nc, u, t, v):
 
 
 def build_qu_float(lam, Nc, u, T, N):
-    """Float matrix of 2Q_u (own builder) used ONLY to propose an eigenvector."""
+    """Build a floating-point matrix of 2Q_u to propose an eigenvector."""
     v = 1.0 / (2 * math.pi * T)
     n = np.arange(N)
     kk = lambda k: lam * v * v / (v * v + np.asarray(k, dtype=float) ** 2)

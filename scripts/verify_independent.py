@@ -1,7 +1,7 @@
-"""Independent re-verification of every MuStar certificate (mpmath.iv + numpy/LAPACK; no Arb, no shared code).
+"""Check all MuStar certificates with mpmath.iv and NumPy/LAPACK, without sharing code with the Arb verifier.
 
 Run:  uv run --no-project --with numpy --with mpmath python verify_independent.py [--quick]
-Exit code 0 iff every positive check passes AND every mutant is rejected.
+Exit code 0 iff every positive check passes and every altered input is rejected.
 Output: logs/rigor/verify_independent.log  and  logs/rigor/verify_independent.json
 """
 import json
@@ -173,7 +173,7 @@ def main():
             t = dc.get("t", dc["T"][1] / dc["T"][0])
             tasks.append(dict(kind="energy", tag="deeper/%s/E(t=%g)" % (fn, t), lam=8.0, Nc=5, u=20, t=t, z=dc["z"], N=dc["N"],
                               float_E=dc["E_float"]))
-    # (6) mutants (each MUST be rejected: cover not ok / point not negative / energy mismatch)
+    # (6) Reject an invalid cover, a nonnegative point or a mismatched energy.
     mut = []
 
     def addm(tag, d, pred):
@@ -269,7 +269,7 @@ def main():
                 worst = max(worst, float(ex_ - bd))
     verdict(worst <= 0, "tail input S(K) <= K_K + lam v atan(v/K) on 36 samples (max excess %.2e)" % worst)
 
-    P("\n== mutants (each must be REJECTED) ==")
+    P("\n== Negative controls (each must be rejected) ==")
     for tag, pred in mut:
         r = results[tag]
         if pred == "cover_fails":

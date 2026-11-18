@@ -1,4 +1,4 @@
-"""NUMERICAL block proposals only; no endpoint or non-reentrance theorem is asserted."""
+"""Estimate block thresholds for the interval calculations; no endpoint or non-reentrance check."""
 import json
 import numpy as np
 from fc import Chain

@@ -1,7 +1,7 @@
-"""CERTIFIED (Arb) spin-model brackets, not physical/material validation:
-for (lam, Nc, mu*) given, with T_c = numerical block threshold of Q_u, T_a = (1+eps) T_c, T_b = (1-eps) T_c:
- (A) 2Q_u(T) > 0 on l^2(N_0) for ALL T >= T_a  (t = 1/T in [0, 1/T_a] covered by Arb intervals);
- (B) G(T) > 0 on l^2(N_0) for ALL T >= T_a;
+"""Use Arb to bracket the last global threshold in the spin model.
+For given (lam, Nc, mu*), let T_c be the numerical block threshold of Q_u. Set T_a = (1+eps) T_c and T_b = (1-eps) T_c:
+ (A) 2Q_u(T) > 0 on l^2(N_0) for all T >= T_a  (t = 1/T in [0, 1/T_a] covered by Arb intervals);
+ (B) G(T) > 0 on l^2(N_0) for all T >= T_a;
      => Theorem C: the normal state is the unique global minimiser of the full (non-TRS, 3D) chain
         for every T >= T_a;
  (C) 2Q_u(v) < 0 at T_b for an explicit finitely supported v (exact finite sum)

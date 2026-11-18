@@ -1,7 +1,7 @@
-"""CERTIFIED explicit mu* threshold (route (a), Theorem D) on a (lam, Nc) grid.
+"""Check explicit mu* thresholds on a (lam, Nc) grid using route (a) of Theorem D.
 Definitions: T_lin(mu) = sup{T : Q_mu(T) is not PSD on l^2(N_0)}, T_G = sup{T : G(T) is not PSD}.
-Theorem D (PROVED, report): if G(T) is PSD for every T >= T_b and Q_{mu1}(T_b) has a negative direction, then for
-EVERY mu* in [0, mu1]: T_lin(mu*) > T_b (openness and monotonicity in mu), and the normal state is the unique
+Theorem D assumes G(T) is PSD for every T >= T_b and Q_{mu1}(T_b) has a negative direction. Then for
+every mu* in [0, mu1], T_lin(mu*) > T_b by openness and monotonicity in mu, and the normal state is the unique
 global minimiser for all T > T_lin(mu*). Negative directions occur arbitrarily close below that supremum;
 no whole left neighbourhood, single instability interval, or endpoint continuity is asserted.
 Certified per cell: (i) 2Q_{mu1}(v) < 0 at a numerically proposed temperature T_b;
@@ -57,5 +57,5 @@ if __name__ == "__main__":
             allok &= x["ok"]
             print("   Nc=%2d mu1=%-6s T_lin(mu1)=%.6f T_b=%.6f 2Q(v)<=%.3e minG=%.3e ok=%s"
                   % (x["Nc"], x["mu1"], x["Tlin_mu1"], x["Tb"], x["twoQ_v"], x["minG"], x["ok"]))
-    print("ALL CERTIFIED" if allok else "NOT ALL CERTIFIED")
+    print("All cells certified" if allok else "Some cells could not be certified")
     sys.exit(0 if allok else 1)

@@ -1,8 +1,8 @@
 import MuStar
 
 /-!
-Axiom audit.  Every main theorem must depend only on `propext`, `Classical.choice`,
-`Quot.sound` (no `sorryAx`, no `Lean.ofReduceBool`, no custom axiom).
+The main theorems depend only on `propext`, `Classical.choice` and `Quot.sound`,
+without `sorryAx`, `Lean.ofReduceBool` or custom axioms.
 -/
 
 #print axioms MuStar.lemma_odd

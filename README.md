@@ -6,17 +6,15 @@ DOI: [10.5281/zenodo.24326113](https://doi.org/10.5281/zenodo.24326113).
 
 ## Results and hypotheses
 
-The energy is the normal-state-subtracted Einstein-kernel unit-spin functional with a symmetric, both-index finite-window transverse Coulomb penalty. Its weighted finite-defect domain permits nonplanar, mirror-breaking and longitudinally reversed spins. The mirror relation is `eta = xi`.
+In the mirror sector of the finite-window Matsubara spin chain, a nonnegative pairing form is equivalent to global stability and uniqueness of the normal state. The two criteria can separate outside the mirror sector. The model uses the normal-state-subtracted Einstein-kernel energy for unit spins and a symmetric transverse Coulomb penalty restricted to the window in both indices. Its weighted finite-defect domain allows nonplanar spins, violations of the mirror relation `eta = xi`, and longitudinal reversals.
 
-- **PROVED:** An exact even/odd/longitudinal-defect decomposition. In the mirror sector, positivity of the pairing form is equivalent to global normal-state stability and uniqueness, including semidefinite boundary cases.
-- **PROVED:** In the unrestricted spin class, positivity of both the pairing form and the longitudinal form suffices for unique global normal-state minimization. With compactness, a uniformly positive Hessian on `[T1,T2]`, a negative witness at `T1` and global positivity above `T2`, a last global-stability boundary has separated coexistence. The quantitative separation applies on `[T1,T2]`, not at arbitrary lower temperatures.
-- **CERTIFIED:** Twenty fixed-index and sixteen fixed-frequency coupling/window cells give sufficient intervals `0 <= mu* <= u1` for equality of the last linear and global negative-energy suprema. Search caps are 1 and 2 respectively. These limits are not optimal endpoints and do not interpolate between couplings.
-- **CERTIFIED:** At `lambda = 8`, fixed index window `Nc = 5`, and `mu* = 20`, the normal Hessian is strictly positive for every `T >= 1/40`, yet finite-support competitors have negative energy. Every negative-energy state in that temperature range breaks the mirror relation. The last boundary satisfies `1/37 < T* <= 4/13`. The initial 40-site-per-half witness is not minimizing; certified 64-site-per-half competitors have lower energy.
-- **NUMERICAL:** Weighted no-flip diagnostics and 240-cell multistart searches. No causal/no-flip counterexample or no-flip nonexistence theorem is established. Stored search outputs are exploratory data, not interval certificates.
+The written proof separates the energy into even, odd and longitudinal-defect terms. It includes the semidefinite case in the mirror sector. In the unrestricted class, positivity of both the pairing form and the longitudinal form suffices for unique global normal-state minimization. With compactness, a uniformly positive Hessian on `[T1,T2]`, a negative witness at `T1` and global positivity above `T2`, the last global-stability boundary has separated coexistence. The quantitative separation holds on `[T1,T2]`.
 
-The fixed-index search cap of 1 (manuscript Table 2) is the exploratory selection limit used to assemble the hard-coded `GRID` in `scripts/certify_threshold.py`, not a computed optimal endpoint. The original exploratory search that selected that grid is not shipped. The generators of the retained exploratory `data/numeric_*.json` outputs are also not shipped; certificate reproduction does not regenerate those numerical searches.
+Interval calculations certify sufficient ranges `0 <= mu* <= u1` for equality of the last linear and global negative-energy suprema at twenty fixed-index and sixteen fixed-frequency parameter cells. The search caps were 1 and 2, respectively. The resulting endpoints are sufficient bounds, not optima or interpolants between couplings. The cap of 1 in Table 2 of the report was used in the exploratory search that selected `GRID` in `scripts/certify_threshold.py`. That search and the generators of the exploratory `data/numeric_*.json` files are not included.
 
-The counterexample has longitudinal reversals and an extreme pseudopotential. It is a spin-model result, not a physical first-order superconducting-transition prediction, latent-heat calculation or materials claim. No experimental or measured data occur here.
+At `lambda = 8`, fixed index window `Nc = 5`, and `mu* = 20`, the certificates show that the normal Hessian is strictly positive for every `T >= 1/40`, even though finite-support competitors have negative energy. In that temperature range every negative-energy state violates `eta = xi`. The last boundary satisfies `1/37 < T* <= 4/13`. Certified competitors with 64 sites per half have lower energy than the initial witness with 40 sites per half.
+
+The counterexample uses longitudinal reversals and an extreme pseudopotential. It establishes a property of the spin model; it does not predict a physical first-order transition, latent heat or a material property. The weighted no-flip diagnostics and 240-cell multistart searches are exploratory. They give neither a causal no-flip counterexample nor a no-flip nonexistence theorem. There are no experimental data.
 
 ## Reproduce the certificates
 
@@ -26,9 +24,9 @@ With Python 3.13 and uv, from the repository root:
 uv run --no-project --with numpy --with scipy --with mpmath --with python-flint --with sympy python scripts/replay.py
 ```
 
-Alternatively install `requirements.txt` in an isolated environment, then run `python scripts/replay.py`. All ten child processes must exit 0. The independent verifier runs 87 checks, including 21 negative-control input/claim perturbations, and must report `TOTAL: 0 failed checks`. These are not code mutation tests. The driver limits BLAS threads to one and writes execution records into a newly created `logs/` directory. Inputs and regenerated outputs are in `scripts/`; `certificates/` holds reference outputs and content hashes; `data/` holds witness and numerical-search data.
+Alternatively install `requirements.txt` in an isolated environment and run `python scripts/replay.py`. All ten child processes must exit 0. The independent verifier runs 87 checks, including 21 perturbations of inputs or claims as negative controls, and must report `TOTAL: 0 failed checks`. The controls leave the code unchanged. The driver limits BLAS to one thread and writes logs to `logs/`. Inputs and regenerated outputs are in `scripts/`; `certificates/` holds the reference outputs and their checksums.
 
-Primary certificates use Arb ball arithmetic. Floating Cholesky factors propose certificates; interval residual bounds and explicit infinite-tail estimates establish positivity. The independent verifier uses interval kernel bounds and shifted Cholesky residual bounds with an explicit binary64 roundoff allowance; that numerical-library error model is part of its trust base. Binary64 interval displays stored in JSON are diagnostic centers, not exact standalone outward enclosures.
+The primary calculations use Arb ball arithmetic. Floating-point Cholesky factors supply candidates, and interval residual bounds and explicit infinite-tail estimates establish positivity. The independent verifier uses interval kernel bounds and shifted Cholesky residual bounds, with an explicit allowance for binary64 roundoff. Its conclusions depend on that library error model. The binary64 values in the JSON files display interval centres rather than exact outward enclosures.
 
 To regenerate the interval map:
 
@@ -40,7 +38,7 @@ The script loads `figures/pub.mplstyle` and writes a vector PDF and PNG from the
 
 ## Lean scope
 
-Lean 4.35.0 and Mathlib at git revision `v4.35.0` are specified in `lean/`. The formalization is selective, not a machine proof of the whole paper.
+The modules in `lean/` use Lean 4.35.0 and Mathlib v4.35.0. They formalize the finite-block arguments and the conditional implications listed below.
 
 | Module | Formalized scope | Not covered |
 |---|---|---|
@@ -50,14 +48,14 @@ Lean 4.35.0 and Mathlib at git revision `v4.35.0` are specified in `lean/`. The 
 | `Threshold` | Conditional set inclusions and supremum equality with explicit boundedness and ordering hypotheses | Temperature analysis, attainment, separation and coexistence |
 | `AxiomCheck` | Thirteen theorem axiom reports | Full-paper formalization |
 
-With elan installed, inside `lean/` use `lake exe cache get`, then `lake build MuStar.AxiomCheck` and `lake env lean MuStar/AxiomCheck.lean`. Acquire precompiled Mathlib artifacts first. Expected axiom lists contain only `propext`, `Classical.choice` and `Quot.sound`, with no custom axiom or `sorry`. A resolved `lake-manifest.json` is supplied; CI builds it on GitHub. Earlier builds of the proof-bearing sources used a local Mathlib path. Subsequent edits to `Defs.lean` change only a documentation link, not declarations or proofs.
+With elan installed, run `lake exe cache get` in `lean/` to fetch the precompiled Mathlib files. Then run `lake build MuStar.AxiomCheck` and `lake env lean MuStar/AxiomCheck.lean`. The expected axiom lists contain only `propext`, `Classical.choice` and `Quot.sound`, with no custom axiom or `sorry`. The supplied `lake-manifest.json` records the dependency revisions used by GitHub Actions.
 
 ## Contents and citation
 
-This software tree contains no manuscript sources or manuscript PDF. The accompanying paper is SuperMatics Technical Report **SM-TR-2026-03**, [10.5281/zenodo.24326111](https://doi.org/10.5281/zenodo.24326111). `figures/` contains the generated summary map and its style. Authored code, Lean sources, inputs, certificates, figures and documentation are licensed under Apache-2.0; dependencies retain their own licenses. Cite this software supplement as [10.5281/zenodo.24326113](https://doi.org/10.5281/zenodo.24326113), using `CITATION.cff`.
+The accompanying paper is SuperMatics Technical Report SM-TR-2026-03, [10.5281/zenodo.24326111](https://doi.org/10.5281/zenodo.24326111), distributed separately. `figures/` contains the interval map and its style file. The authored code, Lean sources, inputs, certificates, figures and documentation are licensed under Apache-2.0. Dependencies retain their own licenses. Cite this supplement as [10.5281/zenodo.24326113](https://doi.org/10.5281/zenodo.24326113), using `CITATION.cff`.
 
-The companion bounds paper is [arXiv:2611.20496](https://arxiv.org/abs/2611.20496), with supplement [10.5281/zenodo.24270482](https://doi.org/10.5281/zenodo.24270482). The merged companion, *Global uniqueness of the superconducting state in multiband and anisotropic Eliashberg models without Coulomb repulsion*, is a Zenodo preprint, [10.5281/zenodo.24326099](https://doi.org/10.5281/zenodo.24326099). The hidden-convexity companion is submitted and is not on arXiv.
+The companion bounds paper is [arXiv:2611.20496](https://arxiv.org/abs/2611.20496), with software at [10.5281/zenodo.24270482](https://doi.org/10.5281/zenodo.24270482). The companion preprint *Global uniqueness of the superconducting state in multiband and anisotropic Eliashberg models without Coulomb repulsion* is available at [10.5281/zenodo.24326099](https://doi.org/10.5281/zenodo.24326099).
 
 ## AI use
 
-AI agents generated proofs, certificates, code, Lean sources and manuscript drafts and edits under the author's direction and review. No LLM is an author.
+AI agents generated proofs, certificates, code, Lean sources and manuscript drafts and edits under Davis Rens's direction and review. No AI agent is an author.

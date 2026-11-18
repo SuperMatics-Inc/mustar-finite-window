@@ -1,4 +1,4 @@
-name: Replay certificates and Lean
+name: Verify certificates and Lean proofs
 on: [push, pull_request, workflow_dispatch]
 jobs:
   certificates:
@@ -19,6 +19,6 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: lean
-      - name: Audit main theorem axioms
+      - name: List axioms of the main theorems
         working-directory: lean
         run: lake env lean MuStar/AxiomCheck.lean

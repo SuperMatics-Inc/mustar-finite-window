@@ -1,11 +1,11 @@
-"""CERTIFIED (Arb ball arithmetic, 128-bit): deeper unrestricted-spin configurations than the witness.
+"""Check configurations of lower energy than the unrestricted-spin witness with 128-bit Arb arithmetic.
 
-The supplied witness (cx_config.json, N=40) has E_{1/40} = -13.0703815796. The supplied
-N=64 configurations were found by floating optimization (NUMERICAL); this script certifies, by direct
-full-chain Arb evaluation (exterior frozen at the normal state, independent of every identity), that
+The supplied witness (cx_config.json, N=40) has E_{1/40} = -13.0703815796. The
+N=64 configurations came from floating-point optimization. We evaluate each one on
+the full chain with the exterior spins held normal, without using the spin identities:
 
     E_{T}(S) < 0           for each stored configuration at T = 1/40, 1/38, 1/37    (lam=8, Nc=5, u=20),
-    E_{1/40}(S_deeper) < E_{1/40}(S_witness) - 1  (the witness is NOT the global minimiser at T1).
+    E_{1/40}(S_deeper) < E_{1/40}(S_witness) - 1  (the witness is not the global minimiser at T1).
 
 Exterior weight (telescoping, no Lemma Dsum needed):  sum_{m>=N} (K_{m-n} - K_{n+m+1}) = sum_{j=N-n}^{N+n} K_j.
 Exit 0 iff all checks hold.  Nothing here is a statement about a physical free energy."""
@@ -59,5 +59,5 @@ if __name__ == "__main__":
     out["ok"] = ok
     out["seconds"] = time.time() - t0
     json.dump(out, open("certify_deeper.json", "w"), indent=1)
-    print("ALL CERTIFIED" if ok else "FAILED", "(%.1fs)" % out["seconds"])
+    print("All energy comparisons certified" if ok else "An energy comparison could not be certified", "(%.1fs)" % out["seconds"])
     sys.exit(0 if ok else 1)

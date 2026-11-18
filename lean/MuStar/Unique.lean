@@ -141,7 +141,7 @@ theorem Q2u_mono (Nc : ℕ) (N : ℕ) (a : ℕ → ℝ) {u u' : ℝ} (h : u ≤ 
   have := sq_nonneg (∑ n ∈ range N, chi Nc n * a n)
   nlinarith
 
-/-- PSD-ness of `Q_u` is inherited by larger `u`. -/
+/-- Increasing `u` preserves positive semidefiniteness of `Q_u`. -/
 theorem psdQu_mono (Nc : ℕ) {u u' : ℝ} (h : u ≤ u') (hP : PsdQu κ Nc u) : PsdQu κ Nc u' :=
   fun N a => le_trans (hP N a) (Q2u_mono κ Nc N a h)
 

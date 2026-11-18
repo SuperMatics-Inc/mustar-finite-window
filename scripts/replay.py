@@ -1,4 +1,4 @@
-"""Replay all computations included in the note; capture true subprocess exits."""
+"""Run the calculations from the report and record each subprocess exit code."""
 from pathlib import Path
 import hashlib
 import json
